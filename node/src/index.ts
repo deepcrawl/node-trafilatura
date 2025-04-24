@@ -11,7 +11,9 @@ export async function extract(html: string): Promise<string | undefined> {
       `${resolve(__dirname, "python", "trafilatura-recall-extractor")} ${path}`,
       { stdio: "pipe" }
     ).toString();
-  } catch {
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.log(err);
     return;
   } finally {
     await removeHtmlFromTmp(path);
