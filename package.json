@@ -1,7 +1,9 @@
 {
-  "name": "@deepcrawl/node-trafilatura-root",
+  "name": "@deepcrawl/node-trafilatura",
+  "version": "0.1.0",
   "private": "true",
   "license": "MIT",
+  "main": "node/assets/index.js",
   "workspaces": {
     "packages": [
       "node",
