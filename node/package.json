@@ -4,7 +4,7 @@
   "scripts": {
     "clean": "pnpm shx rm -rf ./dist",
     "build": "pnpm clean && pnpm tsc",
-    "postbuild": "cp -R ../python/dist/trafilatura-recall-extractor ./dist/python"
+    "postbuild": "cp -R ../python/dist/trafilatura-recall-extractor ./dist/python && chmod +x ./dist/python/trafilatura-recall-extractor"
   },
   "dependencies": {
     "fs-extra": "11.3.0",
