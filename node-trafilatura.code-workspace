@@ -1,5 +1,9 @@
 {
-  "folders": [{ "path": ".", "name": "node-trafilatura" }],
+  "folders": [
+    { "path": "node", "name": "node" },
+    { "path": "python", "name": "python" },
+    { "path": ".", "name": "root" }
+  ],
   "settings": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "[typescript]": {

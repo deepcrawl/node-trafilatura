@@ -1,0 +1,17 @@
+{
+  "name": "@deepcrawl/node-trafilatura-binding",
+  "license": "MIT",
+  "scripts": {
+    "clean": "pnpm shx rm -rf ./dist ./assets",
+    "build": "pnpm clean && pnpm tsc && node esbuild.js"
+  },
+  "dependencies": {
+    "fs-extra": "11.3.0",
+    "uuid": "11.1.0"
+  },
+  "devDependencies": {
+    "@deepcrawl/node-trafilatura-python": "workspace:*",
+    "@types/fs-extra": "11.0.4"
+  },
+  "packageManager": "pnpm@10.9.0"
+}
