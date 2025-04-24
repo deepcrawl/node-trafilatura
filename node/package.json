@@ -2,9 +2,9 @@
   "name": "@deepcrawl/node-trafilatura-binding",
   "license": "MIT",
   "scripts": {
-    "clean": "pnpm shx rm -rf ./dist",
+    "clean": "pnpm shx rm -rf ./dist ./bin",
     "build": "pnpm clean && pnpm tsc",
-    "postbuild": "cp -R ../python/dist/trafilatura-recall-extractor ./dist/python && chmod +x ./dist/python/trafilatura-recall-extractor"
+    "postbuild": "mkdir ./bin && cp -R ../python/dist/trafilatura-recall-extractor ./bin/trafilatura-recall-extractor && chmod +x ./bin/trafilatura-recall-extractor"
   },
   "dependencies": {
     "fs-extra": "11.3.0",
