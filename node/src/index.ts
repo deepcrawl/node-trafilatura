@@ -4,7 +4,7 @@ import { resolve } from "node:path";
 import { remove, writeFile } from "fs-extra";
 import { v4 as uuid } from "uuid";
 
-export async function extract(html: string): Promise<string | undefined> {
+export async function extract(html: string): Promise<string> {
   const path = await storeHtmlInTmp(html);
   try {
     return execSync(
@@ -17,10 +17,6 @@ export async function extract(html: string): Promise<string | undefined> {
       )} ${path}`,
       { stdio: "pipe" }
     ).toString();
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.log(err);
-    return;
   } finally {
     await removeHtmlFromTmp(path);
   }
