@@ -3,6 +3,13 @@
   "version": "0.1.0",
   "license": "MIT",
   "main": "node/assets/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deepcrawl/node-trafilatura.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "workspaces": {
     "packages": [
       "node",
