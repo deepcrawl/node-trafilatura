@@ -1,8 +1,9 @@
 {
   "name": "@deepcrawl/node-trafilatura",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "license": "MIT",
-  "main": "node/assets/index.js",
+  "main": "node/dist/index.js",
+  "types": "node/dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/deepcrawl/node-trafilatura.git"
@@ -23,11 +24,10 @@
   },
   "devDependencies": {
     "@tsconfig/node20": "20.1.5",
-    "esbuild": "0.25.3",
     "eslint": "9.25.1",
     "eslint-config-deepcrawl": "14.4.2",
     "globals": "16.0.0",
-    "husky": "^9.1.7",
+    "husky": "9.1.7",
     "jest": "29.7.0",
     "shx": "0.4.0",
     "ts-jest": "29.3.2",
