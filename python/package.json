@@ -1,6 +1,5 @@
 {
   "name": "@deepcrawl/node-trafilatura-python",
-  "private": "true",
   "license": "MIT",
   "scripts": {
     "preinstall": "python3 -m venv .venv && source .venv/bin/activate && pip3 install -r requirements.txt",

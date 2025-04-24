@@ -1,6 +1,5 @@
 {
   "name": "@deepcrawl/node-trafilatura-binding",
-  "private": "true",
   "license": "MIT",
   "scripts": {
     "clean": "pnpm shx rm -rf ./dist ./assets",
