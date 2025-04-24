@@ -1,11 +1,11 @@
 {
   "name": "@deepcrawl/node-trafilatura",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "license": "MIT",
   "main": "node/dist/index.js",
   "types": "node/dist/index.d.ts",
   "bin": {
-    "trafilatura-recall-extractor": "./node/bin/trafilatura-recall-extractor"
+    "trafilatura-recall-extractor": "./node/bin/python/trafilatura-recall-extractor"
   },
   "repository": {
     "type": "git",
