@@ -12,6 +12,7 @@ export async function extract(html: string): Promise<string | undefined> {
         __dirname,
         "..",
         "bin",
+        "python",
         "trafilatura-recall-extractor"
       )} ${path}`,
       { stdio: "pipe" }
