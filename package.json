@@ -1,0 +1,30 @@
+{
+  "name": "@deepcrawl/node-trafilatura-root",
+  "private": "true",
+  "license": "MIT",
+  "workspaces": {
+    "packages": [
+      "node",
+      "python"
+    ]
+  },
+  "scripts": {
+    "clean": "pnpm -r run clean",
+    "build": "pnpm -r run build",
+    "lint": "pnpm eslint --quiet --cache ."
+  },
+  "devDependencies": {
+    "@tsconfig/node20": "20.1.5",
+    "esbuild": "0.25.3",
+    "eslint": "9.25.1",
+    "eslint-config-deepcrawl": "14.4.2",
+    "globals": "16.0.0",
+    "husky": "^9.1.7",
+    "jest": "29.7.0",
+    "shx": "0.4.0",
+    "ts-jest": "29.3.2",
+    "ts-node": "10.9.2",
+    "typescript": "5.8.3"
+  },
+  "packageManager": "pnpm@10.9.0"
+}
