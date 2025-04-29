@@ -12,6 +12,7 @@ jobs:
         with:
           fetch-depth: 0
           ref: "main"
+          token: ${{ secrets.GH_PERSONAL_TOKEN }}
       - uses: pnpm/action-setup@v2
         with:
           version: 9
