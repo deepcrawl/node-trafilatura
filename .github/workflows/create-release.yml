@@ -31,7 +31,7 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Build
         run: pnpm build
-      - run: Create release PR
-          ./scripts/create-release-pr
+      - name: Create release PR
+        run: ./scripts/create-release-pr
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
