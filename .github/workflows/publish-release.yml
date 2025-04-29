@@ -35,16 +35,3 @@ jobs:
         run: ./scripts/publish-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_TOKEN }}
-      - name: Clean up existing .npmrc
-        run: |
-          if [ -n "$NPM_CONFIG_USERCONFIG" ] && [ -f "$NPM_CONFIG_USERCONFIG" ]; then
-            rm -f $NPM_CONFIG_USERCONFIG
-          fi
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
-        with:
-          node-version-file: .node-version
-          registry-url: "https://registry.npmjs.org"
-      - name: Publish to npmjs.org
-        run: pnpm -r publish --access public --no-git-checks
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_TOKEN }}
