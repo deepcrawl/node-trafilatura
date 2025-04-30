@@ -23,7 +23,7 @@
     "clean": "pnpm -r run clean",
     "build": "pnpm -r run build",
     "lint": "pnpm eslint --quiet --cache .",
-    "postinstall": "pnpm ts-node src/install.ts"
+    "postinstall": "npx ts-node src/install.ts"
   },
   "dependencies": {
     "@types/fs-extra": "11.0.4",
