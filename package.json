@@ -1,6 +1,6 @@
 {
   "name": "@deepcrawl/node-trafilatura",
-  "version": "0.31.0",
+  "version": "0.32.0",
   "private": false,
   "license": "MIT",
   "main": "node/dist/index.js",
