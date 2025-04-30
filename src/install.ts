@@ -24,9 +24,10 @@ void (async () => {
   const zipPath = join(outputDir, binaryName);
 
   await mkdir(outputDir, { recursive: true });
-  shell.exec(
+  const res = shell.exec(
     `gh release download v${version} --repo deepcrawl/node-trafilatura --pattern "${binaryName}" --dir "${outputDir}"`,
   );
+  if (res.code !== 0) throw new Error(`Download failed with code ${res.code}: ${res.stderr}`);
   await createReadStream(zipPath)
     .pipe(unzipper.Extract({ path: outputDir }))
     .promise();
