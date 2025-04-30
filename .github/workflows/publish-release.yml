@@ -31,6 +31,12 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Build
         run: pnpm build
+      - name: Upload release binary
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ./python/dist/trafilatura-recall-extractor
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_TOKEN }}
       - name: Publish to pkg.github.com
         run: ./scripts/publish-release
         env:
