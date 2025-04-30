@@ -36,6 +36,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+      - name: Checkout the tag
+        run: git checkout tags/$TAG_NAME
       - name: Upload release binary
         uses: softprops/action-gh-release@v1
         with:
