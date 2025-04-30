@@ -5,6 +5,9 @@
   "license": "MIT",
   "main": "node/dist/index.js",
   "types": "node/dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/deepcrawl/node-trafilatura.git"
