@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import * as os from "node:os";
 import { join, resolve } from "node:path";
 
@@ -9,16 +10,18 @@ import { version } from "../package.json";
 
 const SupportedTargets = ["linux-arm64", "darwin-arm64"];
 
-const target = `${os.platform()}-${os.arch()}`;
-if (!SupportedTargets.includes(target)) throw new Error(`Unsupported target: ${target}`);
-
-const binaryName = `trafilatura-recall-extractor.zip`;
-const outputDir = resolve(__dirname, "..", "node", "bin");
-const zipPath = join(outputDir, binaryName);
-
 void (async () => {
+  console.log("FASZ", process.cwd());
+  console.log("PINA", resolve(__dirname, ".."));
   const isLocalInstall = process.cwd() === resolve(__dirname, "..");
   if (isLocalInstall) return;
+
+  const target = `${os.platform()}-${os.arch()}`;
+  if (!SupportedTargets.includes(target)) throw new Error(`Unsupported target: ${target}`);
+
+  const binaryName = `trafilatura-recall-extractor.zip`;
+  const outputDir = resolve(__dirname, "..", "node", "bin");
+  const zipPath = join(outputDir, binaryName);
 
   await mkdir(outputDir, { recursive: true });
   shell.exec(
