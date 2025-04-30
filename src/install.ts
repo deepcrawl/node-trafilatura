@@ -14,7 +14,7 @@ void (async () => {
   if (!SupportedTargets.includes(target)) throw new Error(`Unsupported target: ${target}`);
 
   const binaryName = `trafilatura-recall-extractor.zip`;
-  const outputDir = resolve(__dirname, "..", "node", "bin");
+  const outputDir = resolve(__dirname, "..", "..", "..", "node", "bin");
   const zipPath = join(outputDir, binaryName);
 
   await mkdir(outputDir, { recursive: true });
