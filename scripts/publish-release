@@ -50,6 +50,7 @@ pnpm install
 echo "Done installing dependencies with pnpm"
 
 echo "publishing packages to npm..."
+rm .no-postinstall
 pnpm -r publish --access public --no-git-checks
 
 LAST_PUBLISHED_TAG=$(git tag --sort="-version:refname" --list --format="%(refname:strip=2)" | head -n1)

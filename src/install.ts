@@ -1,8 +1,7 @@
-/* eslint-disable no-console */
 import * as os from "node:os";
 import { join, resolve } from "node:path";
 
-import { chmod, createReadStream, mkdir, unlink } from "fs-extra";
+import { chmod, createReadStream, exists, mkdir, unlink } from "fs-extra";
 import * as shell from "shelljs";
 import * as unzipper from "unzipper";
 
@@ -11,10 +10,7 @@ import { version } from "../package.json";
 const SupportedTargets = ["linux-arm64", "darwin-arm64"];
 
 void (async () => {
-  console.log("FASZ", process.cwd());
-  console.log("PINA", resolve(__dirname, ".."));
-  const isLocalInstall = process.cwd() === resolve(__dirname, "..");
-  if (isLocalInstall) return;
+  if (await exists(resolve(__dirname, "..", ".no-postinstall"))) return;
 
   const target = `${os.platform()}-${os.arch()}`;
   if (!SupportedTargets.includes(target)) throw new Error(`Unsupported target: ${target}`);
