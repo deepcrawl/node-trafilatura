@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.settings",
+  "compilerOptions": {
+    "outDir": "dist",
+    "baseUrl": "src"
+  },
+  "include": ["src"]
+}
