@@ -26,7 +26,7 @@
     "clean": "pnpm shx rm -rf ./dist && pnpm -r run clean",
     "build": "pnpm clean && pnpm tsc && pnpm -r run build",
     "lint": "pnpm eslint --quiet --cache .",
-    "postinstall": "if [ ! -e .no-postinstall ]; then node dist/install.js; fi"
+    "postinstall": "if [ ! -e .no-postinstall ]; then node dist/src/install.js; fi"
   },
   "dependencies": {
     "fs-extra": "11.3.0",
