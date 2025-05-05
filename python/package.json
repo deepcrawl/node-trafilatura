@@ -4,7 +4,7 @@
   "scripts": {
     "preinstall": "python3 -m venv .venv && . .venv/bin/activate && pip3 install -r requirements.txt",
     "clean": "pnpm shx rm -rf ./dist ./build",
-    "build": "pnpm clean && . .venv/bin/activate && pyinstaller --collect-data trafilatura src/trafilatura-recall-extractor.py",
+    "build": "pnpm clean && . .venv/bin/activate && pyinstaller --collect-data trafilatura --collect-data justext src/trafilatura-recall-extractor.py",
     "extract": "dist/trafilatura-recall-extractor/trafilatura-recall-extractor"
   },
   "packageManager": "pnpm@10.9.0"
