@@ -7,7 +7,7 @@
   "types": "node/dist/index.d.ts",
   "files": [
     "dist",
-    "node/assets"
+    "node/dist"
   ],
   "repository": {
     "type": "git",
@@ -30,11 +30,11 @@
     "postinstall": "if [ ! -e .no-postinstall ]; then node dist/src/install.js; fi"
   },
   "dependencies": {
-    "@deepcrawl/node-trafilatura-binding": "workspace:node",
     "node-fetch": "2.7.0",
     "fs-extra": "11.3.0",
     "shelljs": "0.9.2",
-    "unzipper": "0.10.11"
+    "unzipper": "0.10.11",
+    "uuid": "11.1.0"
   },
   "devDependencies": {
     "@tsconfig/node20": "20.1.5",
