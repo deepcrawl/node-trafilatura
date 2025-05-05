@@ -3,7 +3,7 @@
   "license": "MIT",
   "scripts": {
     "clean": "pnpm shx rm -rf ./dist ./bin",
-    "build": "pnpm clean && pnpm tsc && node esbuild.js && cp dist/index.d.ts assets/index.d.ts",
+    "build": "pnpm clean && pnpm tsc && node esbuild.js",
     "postbuild": "mkdir ./bin && cp -rL ../python/dist/trafilatura-recall-extractor/ ./bin/trafilatura-recall-extractor/ && chmod +x ./bin/trafilatura-recall-extractor/trafilatura-recall-extractor"
   },
   "dependencies": {
