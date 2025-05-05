@@ -8,14 +8,8 @@ export async function extract(html: string): Promise<string> {
   const path = await storeHtmlInTmp(html);
   try {
     return execSync(
-      `${resolve(
-        __dirname,
-        "..",
-        "bin",
-        "python",
-        "trafilatura-recall-extractor"
-      )} ${path}`,
-      { stdio: "pipe" }
+      `${resolve(__dirname, "..", "bin", "trafilatura-recall-extractor", "trafilatura-recall-extractor")} ${path}`,
+      { stdio: "pipe" },
     ).toString();
   } finally {
     await removeHtmlFromTmp(path);

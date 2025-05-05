@@ -29,6 +29,7 @@
     "postinstall": "if [ ! -e .no-postinstall ]; then node dist/src/install.js; fi"
   },
   "dependencies": {
+    "node-fetch": "2.7.0",
     "fs-extra": "11.3.0",
     "shelljs": "0.9.2",
     "unzipper": "0.10.11"
@@ -37,6 +38,7 @@
     "@tsconfig/node20": "20.1.5",
     "@types/fs-extra": "11.0.4",
     "@types/node": "22.15.3",
+    "@types/node-fetch": "2.6.3",
     "@types/shelljs": "0.8.15",
     "@types/unzipper": "0.10.11",
     "eslint": "9.25.1",
