@@ -3,11 +3,11 @@
   "version": "0.42.0",
   "private": false,
   "license": "MIT",
-  "main": "node/dist/index.js",
-  "types": "node/dist/index.d.ts",
+  "main": "node/assets/index.js",
+  "types": "node/assets/index.d.ts",
   "files": [
     "dist",
-    "node/dist"
+    "node/assets"
   ],
   "repository": {
     "type": "git",
@@ -42,6 +42,7 @@
     "@types/node-fetch": "2.6.3",
     "@types/shelljs": "0.8.15",
     "@types/unzipper": "0.10.11",
+    "esbuild": "0.25.2",
     "eslint": "9.25.1",
     "eslint-config-deepcrawl": "14.4.2",
     "globals": "16.0.0",

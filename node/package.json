@@ -3,13 +3,11 @@
   "license": "MIT",
   "scripts": {
     "clean": "pnpm shx rm -rf ./dist ./bin",
-    "build": "pnpm clean && pnpm tsc",
+    "build": "pnpm clean && pnpm tsc && node esbuild.js && cp dist/index.d.ts assets/index.d.ts",
     "postbuild": "mkdir ./bin && cp -rL ../python/dist/trafilatura-recall-extractor/ ./bin/trafilatura-recall-extractor/ && chmod +x ./bin/trafilatura-recall-extractor/trafilatura-recall-extractor"
   },
   "dependencies": {
     "fs-extra": "11.3.0",
-    "shelljs": "0.9.2",
-    "unzipper": "0.10.11",
     "uuid": "11.1.0"
   },
   "devDependencies": {
