@@ -6,7 +6,8 @@
   "main": "node/dist/index.js",
   "types": "node/dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "node/dist"
   ],
   "repository": {
     "type": "git",
