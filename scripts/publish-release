@@ -63,3 +63,4 @@ RELEASE_NOTES=$(git log --graph --format="%h %s" "${LAST_PUBLISHED_TAG}...${TAG_
 gh release create "${TAG_NAME}" --title="${TAG_NAME}" --notes="${RELEASE_NOTES}"
 
 echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+echo "tag_name=$TAG_NAME" >> $GITHUB_OUTPUT

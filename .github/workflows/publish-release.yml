@@ -4,9 +4,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  github-packages:
+  publish-release:
     name: "Publish to pkg.github.com"
-    runs-on: macos-latest
+    runs-on: default-small-arm64
+    outputs:
+      tag_name: ${{ steps.publish.outputs.tag_name }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
@@ -32,18 +34,59 @@ jobs:
       - name: Build
         run: pnpm build
       - name: Publish to pkg.github.com
+        id: publish
         run: ./scripts/publish-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+  upload-assets:
+    name: "Upload assets"
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: macos-latest
+            platform: darwin
+            arch: arm64
+          - os: default-small-arm64
+            platform: linux
+            arch: arm64
+          - os: default-small
+            platform: linux
+            arch: x64
+    needs: publish-release
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          fetch-depth: 0
+          ref: "main"
+          token: ${{ secrets.GH_PERSONAL_TOKEN }}
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 9
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: .node-version
+          registry-url: "https://npm.pkg.github.com"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Configure git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Install
+        run: pnpm install --frozen-lockfile
+      - name: Build
+        run: pnpm build
       - name: Prepare release binary
         run: |
           cd python/dist
-          zip -r trafilatura-recall-extractor.zip trafilatura-recall-extractor
+          zip -r trafilatura-recall-extractor-${{ matrix.os }}-${{ matrix.arch }}.zip trafilatura-recall-extractor
       - name: Upload release binary
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ env.TAG_NAME }}
-          files: ./python/dist/trafilatura-recall-extractor.zip
+          tag_name: ${{ needs.publish-release.outputs.tag_name }}
+          files: ./python/dist/trafilatura-recall-extractor-${{ matrix.os }}-${{ matrix.arch }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_TOKEN }}
