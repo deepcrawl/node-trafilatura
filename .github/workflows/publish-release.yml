@@ -82,11 +82,11 @@ jobs:
       - name: Prepare release binary
         run: |
           cd python/dist
-          zip -r trafilatura-recall-extractor-${{ matrix.os }}-${{ matrix.arch }}.zip trafilatura-recall-extractor
+          zip -r trafilatura-recall-extractor-${{ matrix.platform }}-${{ matrix.arch }}.zip trafilatura-recall-extractor
       - name: Upload release binary
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ needs.publish-release.outputs.tag_name }}
-          files: ./python/dist/trafilatura-recall-extractor-${{ matrix.os }}-${{ matrix.arch }}.zip
+          files: ./python/dist/trafilatura-recall-extractor-${{ matrix.platform }}-${{ matrix.arch }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_TOKEN }}

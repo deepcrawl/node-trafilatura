@@ -13,8 +13,7 @@ const AssetName = "trafilatura-recall-extractor";
 function getAssetNameForTarget(): string {
   const target = `${os.platform()}-${os.arch()}`;
   if (!SupportedTargets.includes(target)) throw new Error(`Unsupported target: ${target}`);
-  return `${AssetName}.zip`;
-  // return `${AssetName}-${target}.zip`;
+  return `${AssetName}-${target}.zip`;
 }
 
 async function createBinDir(): Promise<string> {
