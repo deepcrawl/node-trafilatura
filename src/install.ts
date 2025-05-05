@@ -7,7 +7,21 @@ import * as unzipper from "unzipper";
 
 import { version } from "../package.json";
 
-const SupportedTargets = ["linux-arm64", "darwin-arm64"];
+const SupportedTargets = ["linux-arm64", "linux-x64", "darwin-arm64"];
+const AssetName = "trafilatura-recall-extractor";
+
+function getAssetNameForTarget(): string {
+  const target = `${os.platform()}-${os.arch()}`;
+  if (!SupportedTargets.includes(target)) throw new Error(`Unsupported target: ${target}`);
+  return `${AssetName}.zip`;
+  // return `${AssetName}-${target}.zip`;
+}
+
+async function createBinDir(): Promise<string> {
+  const binDir = resolve(__dirname, "..", "..", "node", "bin");
+  await mkdir(binDir, { recursive: true });
+  return binDir;
+}
 
 async function extractGitHubTokenFromNpmrc(): Promise<string> {
   const contents = await readFile(resolve(os.homedir(), ".npmrc"));
@@ -28,21 +42,17 @@ async function getReleaseAssetUrl(token: string, assetName: string): Promise<str
   return url;
 }
 
-async function downloadAsset(token: string, url: string, outputDir: string): Promise<void> {
+async function downloadAsset(token: string, url: string, binDir: string): Promise<void> {
   const res = await fetch(url, { headers: { Authorization: `token ${token}`, Accept: "application/octet-stream" } });
   if (!res.ok) throw new Error(`Failed to download asset: ${res.statusText}`);
-  await res.body.pipe(unzipper.Extract({ path: outputDir })).promise();
+  await res.body.pipe(unzipper.Extract({ path: binDir })).promise();
+  await chmod(join(binDir, "trafilatura-recall-extractor"), 0o755);
 }
 
 void (async () => {
-  const target = `${os.platform()}-${os.arch()}`;
-  if (!SupportedTargets.includes(target)) throw new Error(`Unsupported target: ${target}`);
-  const assetName = "trafilatura-recall-extractor.zip";
-  const outputDir = resolve(__dirname, "..", "..", "node", "bin");
-  await mkdir(outputDir, { recursive: true });
+  const assetName = getAssetNameForTarget();
+  const binDir = await createBinDir();
   const token = await extractGitHubTokenFromNpmrc();
   const url = await getReleaseAssetUrl(token, assetName);
-  await downloadAsset(token, url, outputDir);
-  const binPath = join(outputDir, "trafilatura-recall-extractor");
-  await chmod(binPath, 0o755);
+  await downloadAsset(token, url, binDir);
 })();
