@@ -1,4 +1,0 @@
-# Conservative versions with known wheel support
-trafilatura==1.8.0
-lxml==4.9.4  
-pyinstaller>=6.15.0
