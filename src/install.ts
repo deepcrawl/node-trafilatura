@@ -8,7 +8,7 @@ import * as unzipper from "unzipper";
 import { version } from "../package.json";
 
 const SupportedTargets = ["linux-arm64", "linux-x64", "darwin-arm64"];
-const AssetName = "trafilatura-recall-extractor";
+const AssetName = "extract-recall";
 
 function getAssetNameForTarget(): string {
   const target = `${os.platform()}-${os.arch()}`;
