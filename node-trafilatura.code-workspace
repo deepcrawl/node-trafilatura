@@ -12,6 +12,13 @@
         "source.organizeImports": "explicit"
       }
     },
+    "[python]": {
+      "editor.defaultFormatter": "ms-python.black-formatter",
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+      }
+    },
     "editor.formatOnSave": true,
     "editor.tabSize": 2,
     "eslint.runtime": "node",
@@ -26,6 +33,11 @@
     "typescript.preferences.importModuleSpecifier": "relative"
   },
   "extensions": {
-    "recommendations": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+    "recommendations": [
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "ms-python.python",
+      "ms-python.black-formatter"
+    ]
   }
 }
