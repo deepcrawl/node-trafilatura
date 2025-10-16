@@ -45,7 +45,7 @@ async function downloadAsset(token: string, url: string, binDir: string): Promis
   const res = await fetch(url, { headers: { Authorization: `token ${token}`, Accept: "application/octet-stream" } });
   if (!res.ok) throw new Error(`Failed to download asset: ${res.statusText}`);
   await res.body.pipe(unzipper.Extract({ path: binDir })).promise();
-  await chmod(join(binDir, "trafilatura-recall-extractor", "trafilatura-recall-extractor"), 0o777);
+  await chmod(join(binDir, AssetName, AssetName), 0o777);
 }
 
 void (async () => {
