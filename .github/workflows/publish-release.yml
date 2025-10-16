@@ -25,6 +25,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.x"
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libxml2-dev libxslt-dev
       - name: Configure git
         run: |
           git config --global user.name "github-actions[bot]"
@@ -82,11 +86,11 @@ jobs:
       - name: Prepare release binary
         run: |
           cd python/dist
-          zip -r trafilatura-recall-extractor-${{ matrix.platform }}-${{ matrix.arch }}.zip trafilatura-recall-extractor
+          zip -r extract-recall-${{ matrix.platform }}-${{ matrix.arch }}.zip extract-recall
       - name: Upload release binary
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ needs.publish-release.outputs.tag_name }}
-          files: ./python/dist/trafilatura-recall-extractor-${{ matrix.platform }}-${{ matrix.arch }}.zip
+          files: ./python/dist/extract-recall-${{ matrix.platform }}-${{ matrix.arch }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_TOKEN }}
