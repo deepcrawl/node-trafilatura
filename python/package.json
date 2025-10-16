@@ -2,7 +2,7 @@
   "name": "@deepcrawl/node-trafilatura-python",
   "license": "MIT",
   "scripts": {
-    "preinstall": "python3 -m venv .venv && . .venv/bin/activate && pip3 install -r requirements.txt",
+    "preinstall": "python3 -m venv .venv && . .venv/bin/activate && pip3 install --upgrade pip && pip3 install --only-binary=all -r requirements.txt",
     "clean": "pnpm shx rm -rf ./dist ./build",
     "build": "pnpm clean && . .venv/bin/activate && pyinstaller --collect-data trafilatura --collect-data justext src/extract-recall.py",
     "extract": "dist/extract-recall/extract-recall"
