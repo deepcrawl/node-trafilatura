@@ -1,4 +1,7 @@
 packages:
-  - "."
-  - "node"
-  - "python"
+  - .
+  - node
+  - python
+
+onlyBuiltDependencies:
+  - esbuild

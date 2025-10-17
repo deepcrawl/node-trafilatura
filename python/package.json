@@ -4,7 +4,7 @@
   "scripts": {
     "preinstall": "python3 -m venv .venv && . .venv/bin/activate && pip3 install --upgrade pip && pip3 install --only-binary=all -r requirements.txt",
     "clean": "pnpm shx rm -rf ./dist ./build",
-    "build": "pnpm clean && . .venv/bin/activate && pyinstaller --collect-data trafilatura --collect-data justext src/extract-recall.py",
+    "build": "pnpm clean && . .venv/bin/activate && pyinstaller --collect-data trafilatura --collect-data justext --collect-data dateparser src/extract-recall.py",
     "extract": "dist/extract-recall/extract-recall"
   },
   "packageManager": "pnpm@10.9.0"

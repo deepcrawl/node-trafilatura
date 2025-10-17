@@ -4,13 +4,7 @@ import eslintConfigDeepcrawl from "eslint-config-deepcrawl";
 export default [
   ...eslintConfigDeepcrawl,
   {
-    ignores: [
-      "**/eslint.config.mjs",
-      "**/package.json",
-      "**/*.js",
-      "**/dist/**",
-      "**/assets/**",
-    ],
+    ignores: ["**/eslint.config.mjs", "**/package.json", "**/*.js", "**/dist/**", "**/assets/**"],
   },
   {
     languageOptions: {
@@ -24,6 +18,12 @@ export default [
         project: ["./*/tsconfig.json"],
         tsconfigRootDir: import.meta.dirname,
       },
+    },
+  },
+  {
+    files: ["**/*test.ts"],
+    rules: {
+      "max-lines-per-function": "off",
     },
   },
 ];

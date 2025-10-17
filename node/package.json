@@ -4,15 +4,16 @@
   "scripts": {
     "clean": "pnpm shx rm -rf ./dist ./bin",
     "build": "pnpm clean && pnpm tsc",
-    "postbuild": "mkdir ./bin && cp -rL ../python/dist/extract-recall/ ./bin/extract-recall/ && chmod +x ./bin/extract-recall/extract-recall"
+    "postbuild": "mkdir ./bin && cp -rL ../python/dist/extract-recall/ ./bin/extract-recall/ && chmod +x ./bin/extract-recall/extract-recall",
+    "test": "pnpm jest --verbose"
   },
   "dependencies": {
     "fs-extra": "11.3.0",
-    "uuid": "11.1.0"
+    "uuid": "11.1.0",
+    "linkedom": "0.18.12"
   },
   "devDependencies": {
-    "@deepcrawl/node-trafilatura-python": "workspace:*",
-    "@types/fs-extra": "11.0.4"
+    "@deepcrawl/node-trafilatura-python": "workspace:*"
   },
   "packageManager": "pnpm@10.9.0"
 }
