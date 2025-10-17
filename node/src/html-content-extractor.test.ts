@@ -60,7 +60,7 @@ describe("HtmlContentExtractor", () => {
     it("should extract content in HTML format when specified", async () => {
       mockExecSync.mockReturnValue(mockExtractedHtml);
 
-      const result = await HtmlContentExtractor.extract(mockHtml, "html");
+      const result = await HtmlContentExtractor.extract(mockHtml, { outputFormat: "html" });
 
       expect(result).toBe(mockExtractedHtml);
       expect(mockWriteFile).toHaveBeenCalledWith(expectedTempPath, mockHtml);
@@ -74,7 +74,7 @@ describe("HtmlContentExtractor", () => {
     it("should extract content in text format when explicitly specified", async () => {
       mockExecSync.mockReturnValue(mockExtractedText);
 
-      const result = await HtmlContentExtractor.extract(mockHtml, "txt");
+      const result = await HtmlContentExtractor.extract(mockHtml, { outputFormat: "txt" });
 
       expect(result).toBe(mockExtractedText);
       expect(mockExecSync).toHaveBeenCalledWith(`${expectedExtractorPath} ${expectedTempPath} txt`, {
@@ -219,7 +219,7 @@ describe("HtmlContentExtractor", () => {
       it(`should handle ${format} format correctly`, async () => {
         mockExecSync.mockReturnValue(expectedOutput);
 
-        const result = await HtmlContentExtractor.extract(mockHtml, format);
+        const result = await HtmlContentExtractor.extract(mockHtml, { outputFormat: format });
 
         expect(result).toBe(expectedOutput);
         expect(mockExecSync).toHaveBeenCalledWith(`${expectedExtractorPath} ${expectedTempPath} ${format}`, {

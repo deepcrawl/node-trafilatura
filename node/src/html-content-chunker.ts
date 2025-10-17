@@ -2,11 +2,26 @@ import { parseHTML } from "linkedom";
 
 import { HtmlContentExtractor } from "./html-content-extractor";
 
+/**
+ * Represents a single chunk of extracted HTML content.
+ */
 export interface IHtmlContentChunk {
-  title?: string;
-  headingLevel?: number;
-  content: string;
-  wordCount: number;
+  /** Section title from heading element */
+  readonly title: string;
+  /** HTML heading level (1-6) */
+  readonly headingLevel: number;
+  /** The actual text content of the chunk */
+  readonly content: string;
+  /** Number of words in the content */
+  readonly wordCount: number;
+}
+
+/**
+ * Configuration options for HTML content chunking.
+ */
+export interface IHtmlContentChunkerOpts {
+  /** Maximum words per chunk (default: 400) */
+  readonly maxWords: number;
 }
 
 /**
@@ -20,16 +35,19 @@ export class HtmlContentChunker {
    * preserving document structure with headings and enforcing word limits.
    *
    * @param html - The HTML string to process
-   * @param maxWords - Maximum words per chunk (default: 400)
+   * @param opts - Configuration options for chunking
    * @returns Promise resolving to array of structured content chunks
    */
-  public static async chunk(html: string, maxWords = 400): Promise<IHtmlContentChunk[]> {
+  public static async chunk(
+    html: string,
+    opts: IHtmlContentChunkerOpts = { maxWords: 400 },
+  ): Promise<IHtmlContentChunk[]> {
     // First extract clean HTML content using Trafilatura
-    const cleanHtml = await HtmlContentExtractor.extract(html, "html");
+    const cleanHtml = await HtmlContentExtractor.extract(html, { outputFormat: "html" });
 
     // Then parse and chunk the cleaned content
     const { document } = parseHTML(cleanHtml);
-    const processor = new HtmlContentChunker(maxWords);
+    const processor = new HtmlContentChunker(opts.maxWords);
 
     return processor.processDocument(document);
   }

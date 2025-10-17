@@ -60,7 +60,7 @@ console.log(textContent);
 // Output: "Breaking News: AI Breakthrough\n\nScientists have discovered..."
 
 // Extract as clean HTML
-const htmlContent = await HtmlContentExtractor.extract(html, "html");
+const htmlContent = await HtmlContentExtractor.extract(html, { outputFormat: "html" });
 console.log(htmlContent);
 // Output: "<h1>Breaking News: AI Breakthrough</h1><p>Scientists have discovered...</p>"
 ```
@@ -87,7 +87,7 @@ const html = `
   </html>
 `;
 
-const chunks = await HtmlContentChunker.chunk(html, 400); // Max 400 words per chunk
+const chunks = await HtmlContentChunker.chunk(html, { maxWords: 400 }); // Max 400 words per chunk
 
 chunks.forEach((chunk, index) => {
   console.log(`Chunk ${index + 1}:`);
@@ -105,35 +105,51 @@ chunks.forEach((chunk, index) => {
 
 Extract clean content from HTML documents.
 
-#### `HtmlContentExtractor.extract(html, outputFormat?)`
+#### `HtmlContentExtractor.extract(html, opts?)`
 
 **Parameters:**
 
 - `html` (string): The HTML content to extract from
-- `outputFormat` (string, optional): Output format - `'txt'` (default) or `'html'`
+- `opts` (IHtmlContentExtractorOpts, optional): Configuration options
+
+**Options Interface:**
+
+```typescript
+interface IHtmlContentExtractorOpts {
+  readonly outputFormat: "html" | "txt"; // Default: "txt"
+}
+```
 
 **Returns:** Promise<string> - The extracted content
 
 **Example:**
 
 ```typescript
-// Text extraction
+// Text extraction (default)
 const text = await HtmlContentExtractor.extract(html);
 
 // HTML extraction (cleaned structure preserved)
-const cleanHtml = await HtmlContentExtractor.extract(html, "html");
+const cleanHtml = await HtmlContentExtractor.extract(html, { outputFormat: "html" });
 ```
 
 ### HtmlContentChunker
 
 Chunk extracted content into structured, manageable pieces.
 
-#### `HtmlContentChunker.chunk(html, maxWords?)`
+#### `HtmlContentChunker.chunk(html, opts?)`
 
 **Parameters:**
 
 - `html` (string): The HTML content to process
-- `maxWords` (number, optional): Maximum words per chunk (default: 400)
+- `opts` (IHtmlContentChunkerOpts, optional): Configuration options
+
+**Options Interface:**
+
+```typescript
+interface IHtmlContentChunkerOpts {
+  readonly maxWords: number; // Default: 400
+}
+```
 
 **Returns:** Promise<IHtmlContentChunk[]> - Array of content chunks
 
@@ -141,10 +157,10 @@ Chunk extracted content into structured, manageable pieces.
 
 ```typescript
 interface IHtmlContentChunk {
-  title?: string; // Section title from heading
-  headingLevel?: number; // HTML heading level (1-6)
-  content: string; // The actual content
-  wordCount: number; // Number of words in content
+  readonly title: string; // Section title from heading (always present)
+  readonly headingLevel: number; // HTML heading level (1-6, always present)
+  readonly content: string; // The actual content
+  readonly wordCount: number; // Number of words in content
 }
 ```
 
@@ -155,7 +171,7 @@ interface IHtmlContentChunk {
 const chunks = await HtmlContentChunker.chunk(html);
 
 // Custom word limit
-const smallChunks = await HtmlContentChunker.chunk(html, 200);
+const smallChunks = await HtmlContentChunker.chunk(html, { maxWords: 200 });
 ```
 
 ## Architecture

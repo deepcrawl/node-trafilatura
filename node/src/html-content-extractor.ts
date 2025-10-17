@@ -5,6 +5,14 @@ import { remove, writeFile } from "fs-extra";
 import { v4 as uuid } from "uuid";
 
 /**
+ * Configuration options for HTML content extraction.
+ */
+export interface IHtmlContentExtractorOpts {
+  /** Output format: "html" for cleaned HTML structure, "txt" for plain text (default: "txt") */
+  readonly outputFormat: "html" | "txt";
+}
+
+/**
  * HTML content extraction utility that uses the Trafilatura recall extractor
  * to clean and extract article content from HTML.
  */
@@ -13,12 +21,15 @@ export class HtmlContentExtractor {
    * Extract clean article content from HTML using Trafilatura.
    *
    * @param html - The HTML string to extract content from
-   * @param outputFormat - Output format: "html" for cleaned HTML, "txt" for plain text
+   * @param opts - Configuration options for extraction
    * @returns Promise resolving to the extracted content
    */
-  public static async extract(html: string, outputFormat: "html" | "txt" = "txt"): Promise<string> {
+  public static async extract(
+    html: string,
+    opts: IHtmlContentExtractorOpts = { outputFormat: "txt" },
+  ): Promise<string> {
     const extractor = new HtmlContentExtractor();
-    return extractor.processHtml(html, outputFormat);
+    return extractor.processHtml(html, opts.outputFormat);
   }
 
   private constructor() {}

@@ -73,7 +73,7 @@ describe("HtmlContentChunker", () => {
 
       mockExtract.mockResolvedValue(cleanedHtml);
 
-      const result = await HtmlContentChunker.chunk(DEFAULT_HTML, 30);
+      const result = await HtmlContentChunker.chunk(DEFAULT_HTML, { maxWords: 30 });
 
       expect(result.length).toBeGreaterThan(1);
       result.forEach(chunk => {
@@ -93,7 +93,7 @@ describe("HtmlContentChunker", () => {
 
       mockExtract.mockResolvedValue(cleanedHtml);
 
-      const result = await HtmlContentChunker.chunk(DEFAULT_HTML, 30);
+      const result = await HtmlContentChunker.chunk(DEFAULT_HTML, { maxWords: 30 });
 
       expect(result.length).toBeGreaterThan(1);
       result.forEach(chunk => {
@@ -234,7 +234,7 @@ describe("HtmlContentChunker", () => {
 
       mockExtract.mockResolvedValue(cleanedHtml);
 
-      const result = await HtmlContentChunker.chunk(DEFAULT_HTML, 20);
+      const result = await HtmlContentChunker.chunk(DEFAULT_HTML, { maxWords: 20 });
 
       expect(result.length).toBeGreaterThan(1);
       result.forEach(chunk => {
@@ -287,7 +287,7 @@ describe("HtmlContentChunker", () => {
 
       mockExtract.mockResolvedValue(cleanedHtml);
 
-      const result = await HtmlContentChunker.chunk(DEFAULT_HTML, 50);
+      const result = await HtmlContentChunker.chunk(DEFAULT_HTML, { maxWords: 50 });
 
       expect(result).toHaveLength(1);
       expect(result[0].content).toContain(veryLongWord);
@@ -392,7 +392,7 @@ describe("HtmlContentChunker", () => {
 
       mockExtract.mockResolvedValue(cleanedHtml);
 
-      const result = await HtmlContentChunker.chunk(DEFAULT_HTML, 40);
+      const result = await HtmlContentChunker.chunk(DEFAULT_HTML, { maxWords: 40 });
 
       expect(result.length).toBeGreaterThan(2);
 
@@ -413,7 +413,7 @@ describe("HtmlContentChunker", () => {
 
       mockExtract.mockResolvedValue(cleanedHtml);
 
-      const result = await HtmlContentChunker.chunk(DEFAULT_HTML, 0);
+      const result = await HtmlContentChunker.chunk(DEFAULT_HTML, { maxWords: 0 });
 
       // Should still create chunks even with 0 word limit
       expect(result.length).toBeGreaterThan(0);
