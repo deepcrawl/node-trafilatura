@@ -6,7 +6,7 @@ on:
 jobs:
   publish-release:
     name: "Publish to pkg.github.com"
-    runs-on: default-small-arm64
+    runs-on: ubuntu-24.04-arm
     outputs:
       tag_name: ${{ steps.publish.outputs.tag_name }}
     steps:
@@ -52,10 +52,10 @@ jobs:
           - os: macos-latest
             platform: darwin
             arch: arm64
-          - os: default-small-arm64
+          - os: ubuntu-24.04-arm
             platform: linux
             arch: arm64
-          - os: default-small
+          - os: ubuntu-24.04
             platform: linux
             arch: x64
     needs: publish-release
